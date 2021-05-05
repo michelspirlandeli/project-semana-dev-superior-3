@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_sellers")
-public class Seller implements Serializable {
+public class Seller {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,18 +44,5 @@ public class Seller implements Serializable {
 
     public List<Sale> getSales() {
         return sales;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Seller seller = (Seller) o;
-        return id.equals(seller.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }
