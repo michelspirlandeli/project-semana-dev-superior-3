@@ -2,7 +2,7 @@
 
 <h4 align="center">Dashboard Vendas</h4>
 <p align="center">
-  <img  src="./frontend/src/assets/img/dashboard.png" width="500">
+  <img  src="./frontend/src/assets/img/dashboard.png" width="700">
 </p>
 
 ## 🛠 Tecnologias
