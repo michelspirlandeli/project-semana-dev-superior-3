@@ -1,30 +1,28 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { salePage } from "types/sale";
-import { BASE_URL } from "utils/requests";
+import { api } from "services/api";
 import { formatLocalDate } from "utils/format";
 import Pagination from "components/Pagination";
 
 const DataTatble = () => {
-  const [activePage, setActivePage] = useState(0);
   const [page, setPage] = useState<salePage>({
     first: true,
     last: true,
     number: 0,
     totalElements: 0,
-    totalPages: 0,
-  });
+    totalPages: 0
+  })
+  const [currentPage, setCurrentPage] = useState<number>(0)
 
   useEffect(() => {
-    axios
-      .get(`${BASE_URL}/sales?page=${activePage}&size=10&sort=date,desc`)
-      .then((response) => {
-        setPage(response.data);
-      });
-  }, [activePage]);
+    api.get(`sales?page=${currentPage}&size=20&sort=date,desc`)
+      .then((res) => {
+        setPage(res.data)
+      })
+  }, [currentPage])
 
-  const changePage = (index: number) => {
-    setActivePage(index);
+  function handleOnPageChange(index: number){
+    setCurrentPage(index)
   }
   return (
     <>
@@ -52,7 +50,7 @@ const DataTatble = () => {
         </tbody>
       </table>
     </div>
-    <Pagination page={page} onPageChange={changePage}/>
+    <Pagination page={page} onPageChange={handleOnPageChange}/>
     </>
   );
 };
